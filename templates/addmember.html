@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/iconn.ico" />
+    <link rel="stylesheet" href="/static/addMinutes.css">
+
+    <title>Society Dashboard - Add Members</title>
+</head>
+<body>
+    <h1>Add Members</h1>
+    <div style="width: 15%; height: 0.3rem; background-color: #4CA6A7; margin-left: 38.6rem; margin-bottom: 3rem;"></div>
+    <div class='bold-line'></div>
+            <div class='container'>
+                <div class='window'>
+                    <div class='overlay' style="height: 650px;"></div>
+                    <div class='content'>
+                        <div class='welcome'>Hello There!</div>
+                        <div class='subtitle'>You can Add Members here...</div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {% if status %}
+                            <div class="alert alert-primary">{{status}}</div>
+                            {% endif %}
+                            <div class='input-fields'>
+                                <input type='text' name="name" placeholder='Name' class='input-line full-width'></input>
+                                <input type='text' name="domain" placeholder='Domain' class='input-line full-width'></input>
+                                <input type='text' name="department" placeholder='Department' class='input-line full-width'></input>
+                                <input type='text' name="year" placeholder=' Year' class='input-line full-width'></input>
+                                <input type='text' name="contact" placeholder='Contact Number' class='input-line full-width'></input>
+                                <input type='text' name="email" placeholder='Email' class='input-line full-width'></input>
+                                <label style="font-size: 20px; opacity: 60%;" for="joinedin">Joined in</label>
+                                <input style="opacity: 60%;" type='datetime-local' name="date" placeholder='Joined in' class='input-line full-width'></input>
+                            </div>                          
+                            <div><button type="submit" class='ghost-round full-width'>Add</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+</body>
+</html>

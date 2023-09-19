@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" type="image/x-icon" href="/static/iconn.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Montserrat&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/executive.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Society Dashboard-Member Portal
+    </title>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h1>D</h1>
+            <div class="options">
+                <a href=""> <i title="Home"class="fa-sharp  fa-xl fa-yy fa-solid fa-house colors"id='1' onclick="coloring(this.id)"></i></a>
+                 <a href="/meeting"><i title="View Meeting Minutes" class="fa-solid fa-xl fa-yy fa-eye" id="6" onclick="coloring(this.id)"></i></a>
+              <!-- <a href="#tasks">  <i title="Add Tasks" class="fa-solid  fa-xl fa-yy fa-plus" id="3" onclick="coloring(this.id)"></i></a>  -->
+                 <a href="#todo"><i  title="View Your Tasks" class="fa-solid  fa-xl  fa-yy fa-check" id="5" onclick="coloring(this.id)"></i></a>
+             <br><a href="/logout"  title="Log Out">
+                <img class="round" src="/static/logout.jpg" alt=""></a>
+                </div>
+            
+        </div>
+        <div class="middle">
+            <h1>Hello, {{user.name}}</h1>
+            <div class="boxes">
+
+                <div class="box" style="width: 100%;">
+                    <i class="fa-solid yy fa-xl fa-calendar-days"></i>
+                    <p class="yyy">Tenure</p>
+                    <h2>22 - 23</h2>
+
+
+                </div>
+             
+            </div>
+            <div class="boxes1">
+
+                <div class="box1">
+                    <a href="/meeting">
+                        <div>
+                            <i style="color: white;" class="fa-solid fa-xl yyyy fa-eye"></i>
+                            <h2 class="headd">View Meeting Meetings...</h2>
+                            <p >View Your Past Meeting Minutes Here!!</p>
+                        </div>
+                    </a>
+                   
+
+                </div>
+                <div class="box1" style="width: 60%;background-color: #178083 ; ">
+                    <a href="#todo">
+                        <div>
+                            <i style="color: white;" class="fa-solid fa-xl yyyy fa-check"></i>
+                            <h2 class="headd">Check your assigned tasks...</h2>
+                            <p>Check Your Assigned Tasks Here!!</p>
+                        </div>
+                    </a>
+                   
+
+                </div>
+                
+                <!-- <div class="box1" style="background-color: #178083 ; ">
+                    <a href="#">
+                        <div>
+                            <i style=" color: white;" class="fa-solid fa-xl yyyy fa-wand-sparkles"></i>
+                            <h2 class="headd">Update Profile...</h2>
+                            <p>Update Your Information Here!!</p>
+                        </div>
+                    </a>
+                   
+
+                </div> -->
+            </div>
+            <h1 style="margin-top: 2rem; color: #178083;">TODO LIST</h1>
+            {% for ta in task  %}
+            <div class="TODO" id="todo">
+                <span style="font-size: x-large; font-weight: bolder;">{{ta.user}}</span>
+                <ul style="margin-top: 0.6rem;">
+                    {% if ta.taskcom == True %}
+			        <strike><li style="list-style: none; font-size: 20px;" class="task1"><i class="fa-solid fa-check"></i> &nbsp;&nbsp;{{ta.task}}</li></strike>
+                    
+			        {% else %}
+                    <li style="list-style: none; font-size: 20px;" class="task1"><i class="fa-solid fa-check"></i>&nbsp;&nbsp;{{ta.task}}</li>
+                    {% endif %}
+                    {% comment %} <li style="list-style: none;"><i class="fa-solid fa-check"></i> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, iure!</li> {% endcomment %}
+                </ul>
+                <p></p>
+                {% if ta.taskcom == True %}
+                <li style="list-style: none;" class="fa-solid fa-clock"> &nbsp;&nbsp;  Completed in : {{ta.completion_date}}</li>
+                {% else %}
+                <a href="/updatetask/{{ta.id}}"><button class="done">Update</button></a>
+                {% endif %}
+                <!-- <button class="done" onclick="strike()">Mark As Done</button> -->
+            </div>
+            {% endfor %}
+            <!-- <div class="TODO">
+                <span>TASK #02</span>
+                <ul style="margin-top: 0.6rem;">
+                    <li style="list-style: none;"><i class="fa-solid fa-check"></i> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, iure!</li>
+                    <li style="list-style: none;"><i class="fa-solid fa-check"></i> Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, iure!</li>
+                </ul>
+                <button class="done">Mark As Done</button>
+
+
+            </div> -->
+        </div>
+        <div class="right">
+            <!-- <a href="/logout"><button  value="Log Out" class="b" type="submit">LogOut</button></a> -->
+
+            <h2>Your Upcoming Meetings</h2>
+            {% for schedule in sche %}
+            
+            <div class="chotu">
+                <span><i class="fa-solid u fa-calendar-days"></i>{{schedule.date}}</span>
+                <span><i class="fa-solid u fa-clock"></i>{{schedule.time}}</span>
+                <span><i class="fa-solid u fa-location-dot"></i>{{schedule.location}}</span>
+                
+            </div>
+            {% endfor %}
+            {% comment %} <div class="chotu">
+                <span><i class="fa-solid u fa-calendar-days"></i> 28'August'2022</span>
+                <span><i class="fa-solid u fa-clock"></i>9:20 A.M.</span>
+                <span><i class="fa-solid u fa-location-dot"></i>RCAI</span>
+
+            </div> {% endcomment %}
+        </div>
+    </div>
+</body>
+<script>
+    function coloring(e){
+        var removing=document.getElementsByClassName('colors')
+        removing[0].classList.remove('colors')
+        var ele=document.getElementById(e)
+        ele.classList.add('colors')
+
+    }  
+</script>
+<script>
+    
+    function strike(){
+        task=document.getElementsByClassName("task1")
+        console.log(task)
+        var task_lst=Array.from(task)
+        console.log(task_lst)
+
+        for(i=0; i<task_lst.length;i++){
+            text=task_lst[i].innerText
+            console.log(task_lst[i])
+            task_lst[i].innerHTML=`<strike>`+text+`</strike>`
+        }
+       
+    }
+
+</script> 
+
+</html>
